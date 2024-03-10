@@ -50,4 +50,19 @@ public class SwipePage {
             driver.perform(List.of(swipe));
         }
     }
+
+    public void performVertikalSwipe() {
+        WebElement sourceElement = driver.findElement(AppiumBy.xpath("(//android.view.ViewGroup[@content-desc=\"card\"])[1]"));
+        Point source = sourceElement.getLocation();
+            PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+            Sequence swipe = new Sequence(finger, 1);
+            swipe.addAction(
+                    finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), source.x, source.y));
+            swipe.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+            swipe.addAction(
+                    finger.createPointerMove(Duration.ofMillis(1000), PointerInput.Origin.viewport(), source.x, source.y - (source.x * 30)));
+            swipe.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+            swipe.addAction(new Pause(finger, Duration.ofMillis(600)));
+            driver.perform(List.of(swipe));
+    }
 }
