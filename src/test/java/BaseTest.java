@@ -14,12 +14,11 @@ public class BaseTest {
     public void setUp(String appPath) throws URISyntaxException, MalformedURLException {
         UiAutomator2Options options = new UiAutomator2Options()
                 .setAppWaitActivity("*")
-                .setApp(appPath) // Путь к приложению
-                //.setCapability(
-                //      "chromedriverExecutable",
-                //      "..\\chromedriver.exe")
+                .setUdid("emulator-5554")
+                .setApp(appPath); // Путь к приложению
+                ;
                 // Путь к chromedriver, но он должен быть последним, т.к. не возвращает экземпляр capabilities
-                .setUdid("emulator-5554");
+                ;
         driver = new AndroidDriver(
                 new URI("http://127.0.0.1:4723").toURL(), options
         );

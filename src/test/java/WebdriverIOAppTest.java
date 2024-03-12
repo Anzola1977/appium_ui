@@ -12,13 +12,14 @@ import java.nio.file.Path;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class WebdriverIOAppTest extends BaseTest {
+public class WebdriverIOAppTest extends BaseTest{
     private static final String APP_PATH = String.valueOf(
             Path.of(
                     System.getProperty("user.dir"),
                     "/src/main/resources", "webdriverio-app.apk"
             )
     );
+
     @BeforeEach
     public void setUp() throws URISyntaxException, MalformedURLException {
         super.setUp(APP_PATH);
@@ -33,23 +34,16 @@ public class WebdriverIOAppTest extends BaseTest {
         assertEquals("Click to turn the switch OFF", formPage.getSwitchText());
         assertEquals("Appium is awesome", formPage.getSelectedDropdownValue());
         formPage.submitForm();
-
         assertEquals("This button is", formPage.getActiveMessageTitle());
         assertEquals("This button is active", formPage.getActiveMessage());
         formPage.closeMessage();
-
         assertEquals("false", formPage.checkInActiveBtn());
     }
 
     @Test
-    public void testWebView () {
+    public void testWebView() {
         final WebViewPage webViewPage = new WebViewPage(driver);
-
-        assertEquals (
-                "Next-gen browser and mobile automation test framework for Node.js",
-                webViewPage.getMainPageText()
-        );
-
+        assertTrue(webViewPage.findText().contains("Contributing to a big Open Source project can be hard."));
         webViewPage.switchToNativeApp();
     }
 
@@ -77,7 +71,6 @@ public class WebdriverIOAppTest extends BaseTest {
         final SwipePage swipePage = new SwipePage(driver);
         swipePage.open();
         swipePage.performVertikalSwipe();
-        //Сделайте swipe вниз
         assertTrue(swipePage.foundText.isDisplayed());
         assertEquals("You found me!!!", swipePage.foundText.getText());
     }

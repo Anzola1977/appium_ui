@@ -11,7 +11,7 @@ import java.time.Duration;
 
 public class HomePage {
     protected final AppiumDriver driver;
-    private final WebDriverWait wait;
+    protected final WebDriverWait wait;
 
     public HomePage(AppiumDriver driver) {
         this.driver = driver;

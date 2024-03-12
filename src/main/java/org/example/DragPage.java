@@ -71,17 +71,15 @@ public class DragPage {
         );
     }
 
-    public void dragAndDropPieces() {
-        HomePage homePage = new HomePage(driver);
-        homePage.openMenu("Drag");
+    public void dragDropMethod(WebElement location, WebElement destination){
         PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
         Sequence dragAndDrop = new Sequence(finger, 1);
         dragAndDrop.addAction(
                 finger.createPointerMove(
                         ofMillis(100),
                         PointerInput.Origin.viewport(),
-                        getElementCenter(dragLeftFirst).x,
-                        getElementCenter(dragLeftFirst).y
+                        getElementCenter(location).x,
+                        getElementCenter(location).y
                 )
         );
         dragAndDrop.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
@@ -90,188 +88,26 @@ public class DragPage {
                 finger.createPointerMove(
                         ofMillis(600),
                         PointerInput.Origin.viewport(),
-                        getElementCenter(dropLeftFirst).x,
-                        getElementCenter(dropLeftFirst).y
+                        getElementCenter(destination).x,
+                        getElementCenter(destination).y
                 )
         );
         dragAndDrop.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
         driver.perform(List.of(dragAndDrop));
+    }
 
-        dragAndDrop = new Sequence(finger, 1);
-        dragAndDrop.addAction(
-                finger.createPointerMove(
-                        ofMillis(100),
-                        PointerInput.Origin.viewport(),
-                        getElementCenter(dragLeftSecond).x,
-                        getElementCenter(dragLeftSecond).y
-                )
-        );
-        dragAndDrop.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-        dragAndDrop.addAction(new Pause(finger, ofMillis(600)));
-        dragAndDrop.addAction(
-                finger.createPointerMove(
-                        ofMillis(600),
-                        PointerInput.Origin.viewport(),
-                        getElementCenter(dropLeftSecond).x,
-                        getElementCenter(dropLeftSecond).y
-                )
-        );
-        dragAndDrop.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-        driver.perform(List.of(dragAndDrop));
-
-        dragAndDrop = new Sequence(finger, 1);
-        dragAndDrop.addAction(
-                finger.createPointerMove(
-                        ofMillis(100),
-                        PointerInput.Origin.viewport(),
-                        getElementCenter(dragLeftThird).x,
-                        getElementCenter(dragLeftThird).y
-                )
-        );
-        dragAndDrop.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-        dragAndDrop.addAction(new Pause(finger, ofMillis(600)));
-        dragAndDrop.addAction(
-                finger.createPointerMove(
-                        ofMillis(600),
-                        PointerInput.Origin.viewport(),
-                        getElementCenter(dropLeftThird).x,
-                        getElementCenter(dropLeftThird).y
-                )
-        );
-        dragAndDrop.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-        driver.perform(List.of(dragAndDrop));
-
-        dragAndDrop = new Sequence(finger, 1);
-        dragAndDrop.addAction(
-                finger.createPointerMove(
-                        ofMillis(100),
-                        PointerInput.Origin.viewport(),
-                        getElementCenter(dragMiddleFirst).x,
-                        getElementCenter(dragMiddleFirst).y
-                )
-        );
-        dragAndDrop.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-        dragAndDrop.addAction(new Pause(finger, ofMillis(600)));
-        dragAndDrop.addAction(
-                finger.createPointerMove(
-                        ofMillis(600),
-                        PointerInput.Origin.viewport(),
-                        getElementCenter(dropMiddleFirst).x,
-                        getElementCenter(dropMiddleFirst).y
-                )
-        );
-        dragAndDrop.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-        driver.perform(List.of(dragAndDrop));
-
-        dragAndDrop = new Sequence(finger, 1);
-        dragAndDrop.addAction(
-                finger.createPointerMove(
-                        ofMillis(100),
-                        PointerInput.Origin.viewport(),
-                        getElementCenter(dragMiddleSecond).x,
-                        getElementCenter(dragMiddleSecond).y
-                )
-        );
-        dragAndDrop.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-        dragAndDrop.addAction(new Pause(finger, ofMillis(600)));
-        dragAndDrop.addAction(
-                finger.createPointerMove(
-                        ofMillis(600),
-                        PointerInput.Origin.viewport(),
-                        getElementCenter(dropMiddleSecond).x,
-                        getElementCenter(dropMiddleSecond).y
-                )
-        );
-        dragAndDrop.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-        driver.perform(List.of(dragAndDrop));
-
-        dragAndDrop = new Sequence(finger, 1);
-        dragAndDrop.addAction(
-                finger.createPointerMove(
-                        ofMillis(100),
-                        PointerInput.Origin.viewport(),
-                        getElementCenter(dragMiddleThird).x,
-                        getElementCenter(dragMiddleThird).y
-                )
-        );
-        dragAndDrop.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-        dragAndDrop.addAction(new Pause(finger, ofMillis(600)));
-        dragAndDrop.addAction(
-                finger.createPointerMove(
-                        ofMillis(600),
-                        PointerInput.Origin.viewport(),
-                        getElementCenter(dropMiddleThird).x,
-                        getElementCenter(dropMiddleThird).y
-                )
-        );
-        dragAndDrop.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-        driver.perform(List.of(dragAndDrop));
-
-        dragAndDrop = new Sequence(finger, 1);
-        dragAndDrop.addAction(
-                finger.createPointerMove(
-                        ofMillis(100),
-                        PointerInput.Origin.viewport(),
-                        getElementCenter(dragRightFirst).x,
-                        getElementCenter(dragRightFirst).y
-                )
-        );
-        dragAndDrop.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-        dragAndDrop.addAction(new Pause(finger, ofMillis(600)));
-        dragAndDrop.addAction(
-                finger.createPointerMove(
-                        ofMillis(600),
-                        PointerInput.Origin.viewport(),
-                        getElementCenter(dropRightFirst).x,
-                        getElementCenter(dropRightFirst).y
-                )
-        );
-        dragAndDrop.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-        driver.perform(List.of(dragAndDrop));
-
-        dragAndDrop = new Sequence(finger, 1);
-        dragAndDrop.addAction(
-                finger.createPointerMove(
-                        ofMillis(100),
-                        PointerInput.Origin.viewport(),
-                        getElementCenter(dragRightSecond).x,
-                        getElementCenter(dragRightSecond).y
-                )
-        );
-        dragAndDrop.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-        dragAndDrop.addAction(new Pause(finger, ofMillis(600)));
-        dragAndDrop.addAction(
-                finger.createPointerMove(
-                        ofMillis(600),
-                        PointerInput.Origin.viewport(),
-                        getElementCenter(dropRightSecond).x,
-                        getElementCenter(dropRightSecond).y
-                )
-        );
-        dragAndDrop.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-        driver.perform(List.of(dragAndDrop));
-
-        dragAndDrop = new Sequence(finger, 1);
-        dragAndDrop.addAction(
-                finger.createPointerMove(
-                        ofMillis(100),
-                        PointerInput.Origin.viewport(),
-                        getElementCenter(dragRightThird).x,
-                        getElementCenter(dragRightThird).y
-                )
-        );
-        dragAndDrop.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-        dragAndDrop.addAction(new Pause(finger, ofMillis(600)));
-        dragAndDrop.addAction(
-                finger.createPointerMove(
-                        ofMillis(600),
-                        PointerInput.Origin.viewport(),
-                        getElementCenter(dropRightThird).x,
-                        getElementCenter(dropRightThird).y
-                )
-        );
-        dragAndDrop.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
-        driver.perform(List.of(dragAndDrop));
+    public void dragAndDropPieces() {
+        HomePage homePage = new HomePage(driver);
+        homePage.openMenu("Drag");
+        dragDropMethod(dragLeftFirst, dropLeftFirst);
+        dragDropMethod(dragLeftSecond, dropLeftSecond);
+        dragDropMethod(dragLeftThird, dropLeftThird);
+        dragDropMethod(dragMiddleFirst, dropMiddleFirst);
+        dragDropMethod(dragMiddleSecond, dropMiddleSecond);
+        dragDropMethod(dragMiddleThird, dropMiddleThird);
+        dragDropMethod(dragRightFirst, dropRightFirst);
+        dragDropMethod(dragRightSecond, dropRightSecond);
+        dragDropMethod(dragRightThird, dropRightThird);
     }
 
     public String congratulationsText() {
